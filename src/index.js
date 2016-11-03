@@ -24,6 +24,8 @@ class InputMasker extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
     this.onPaste = this.onPaste.bind(this);
+    this.focus = this.focus.bind(this);
+    this.blur = this.blur.bind(this);
   }
 
   componentWillMount() {
@@ -220,6 +222,8 @@ class InputMasker extends React.Component {
       maxLength={patternLength}
       onChange={this.onChange}
       onKeyDown={this.onKeyDown}
+      onFocus={this.focus}
+      onBlur={this.blur}
       onBeforeInput={this.onKeyPress}
       onPaste={this.onPaste}
       placeholder={this.props.placeholder || this.mask.emptyValue}

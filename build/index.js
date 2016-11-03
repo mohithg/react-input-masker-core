@@ -52,6 +52,8 @@ var InputMasker = function (_React$Component) {
     _this.onKeyDown = _this.onKeyDown.bind(_this);
     _this.onKeyPress = _this.onKeyPress.bind(_this);
     _this.onPaste = _this.onPaste.bind(_this);
+    _this.focus = _this.focus.bind(_this);
+    _this.blur = _this.blur.bind(_this);
     return _this;
   }
 
@@ -269,6 +271,8 @@ var InputMasker = function (_React$Component) {
         maxLength: patternLength,
         onChange: this.onChange,
         onKeyDown: this.onKeyDown,
+        onFocus: this.focus,
+        onBlur: this.blur,
         onBeforeInput: this.onKeyPress,
         onPaste: this.onPaste,
         placeholder: this.props.placeholder || this.mask.emptyValue,
