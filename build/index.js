@@ -47,6 +47,11 @@ var InputMasker = function (_React$Component) {
 
     _this.state = {};
     _this.mask = '';
+
+    _this.onChange = _this.onChange.bind(_this);
+    _this.onKeyDown = _this.onKeyDown.bind(_this);
+    _this.onKeyPress = _this.onKeyPress.bind(_this);
+    _this.onPaste = _this.onPaste.bind(_this);
     return _this;
   }
 
