@@ -19,6 +19,11 @@ class InputMasker extends React.Component {
     super(props);
     this.state = {};
     this.mask = '';
+
+    this.onChange = this.onChange.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
+    this.onPaste = this.onPaste.bind(this);
   }
 
   componentWillMount() {
