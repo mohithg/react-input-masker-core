@@ -1,6 +1,6 @@
 {
   "name": "react-input-mask-core",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React Input masker based on Input mask core",
   "main": "build/index.js",
   "keywords": [
