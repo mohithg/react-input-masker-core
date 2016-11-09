@@ -179,7 +179,7 @@ var InputMasker = function (_React$Component) {
       // Ignore modified key presses
       // Ignore enter key to allow form submission
       if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') {
-        return;
+        e.preventDefault();return;
       }
 
       e.preventDefault();

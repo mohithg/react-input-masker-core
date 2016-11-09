@@ -141,7 +141,7 @@ class InputMasker extends React.Component {
 
     // Ignore modified key presses
     // Ignore enter key to allow form submission
-    if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') { return; }
+    if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') { e.preventDefault(); return; }
 
     e.preventDefault();
     this.updateMaskSelection();
