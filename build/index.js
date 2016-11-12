@@ -20,6 +20,8 @@ var _inputmaskCore2 = _interopRequireDefault(_inputmaskCore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -275,8 +277,11 @@ var InputMasker = function (_React$Component) {
 
       /* eslint-disable */
       var patternLength = this.mask.pattern.length;
-      var props = this.props;
-      delete props.onEnter;
+
+      var _props = this.props,
+          onEnter = _props.onEnter,
+          props = _objectWithoutProperties(_props, ['onEnter']);
+
       return _react2.default.createElement('input', _extends({}, props, {
         ref: function ref(r) {
           return _this3.input = r;

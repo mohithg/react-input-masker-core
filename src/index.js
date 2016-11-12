@@ -225,8 +225,7 @@ class InputMasker extends React.Component {
   render() {
     /* eslint-disable */
     const patternLength = this.mask.pattern.length;
-    const props = this.props;
-    delete props.onEnter;
+    const { onEnter, ...props } = this.props;
     return (<input
       {...props}
       ref={r => this.input = r}
