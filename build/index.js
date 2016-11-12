@@ -132,6 +132,10 @@ var InputMasker = function (_React$Component) {
   }, {
     key: 'onKeyDown',
     value: function onKeyDown(e) {
+      if (e.key === 'Enter') {
+        this.props.onEnter(this.mask.getValue());
+      }
+
       // console.log('onKeyDown', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
       if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') {
         e.preventDefault();return;
@@ -271,10 +275,8 @@ var InputMasker = function (_React$Component) {
 
       /* eslint-disable */
       var patternLength = this.mask.pattern.length;
-      var _props = this.props,
-          onEnter = _props.onEnter,
-          props = _props.props;
-
+      var props = this.props;
+      delete props.onEnter;
       return _react2.default.createElement('input', _extends({}, props, {
         ref: function ref(r) {
           return _this3.input = r;

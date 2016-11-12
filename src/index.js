@@ -96,6 +96,10 @@ class InputMasker extends React.Component {
   }
 
   onKeyDown(e) {
+    if (e.key === 'Enter') {
+      this.props.onEnter(this.mask.getValue());
+    }
+
     // console.log('onKeyDown', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
     if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') { e.preventDefault(); return; }
 
@@ -221,7 +225,8 @@ class InputMasker extends React.Component {
   render() {
     /* eslint-disable */
     const patternLength = this.mask.pattern.length;
-    const {onEnter, props} = this.props;
+    const props = this.props;
+    delete props.onEnter;
     return (<input
       {...props}
       ref={r => this.input = r}
