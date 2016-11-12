@@ -133,23 +133,8 @@ var InputMasker = function (_React$Component) {
     key: 'onKeyDown',
     value: function onKeyDown(e) {
       // console.log('onKeyDown', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
-
-      // Ignore modified key presses
-      if (e.metaKey || e.altKey || e.ctrlKey) {
-        e.preventDefault();
-        return;
-      }
-
-      /**
-       * onEnter call the onChange for the user if needed
-       * Ignore enter key to allow form submission
-       */
-      if (e.key === 'Enter') {
-        if (this.props.onChange) {
-          this.props.onChange(e);
-        }
-        e.preventDefault();
-        return;
+      if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') {
+        e.preventDefault();return;
       }
 
       if (isUndo(e)) {
@@ -198,6 +183,10 @@ var InputMasker = function (_React$Component) {
       // Ignore enter key to allow form submission
       if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') {
         e.preventDefault();return;
+      }
+
+      if (e.key === 'Enter') {
+        this.props.onEnter(this.mask.getValue());
       }
 
       e.preventDefault();
@@ -313,11 +302,13 @@ InputMasker.propTypes = {
   onBlur: _react2.default.PropTypes.func,
   onFocus: _react2.default.PropTypes.func,
   value: _react2.default.PropTypes.any,
-  onChange: _react2.default.PropTypes.func
+  onChange: _react2.default.PropTypes.func,
+  onEnter: _react2.default.PropTypes.func
 };
 
 InputMasker.defaultProps = {
-  value: ''
+  value: '',
+  onEnter: function onEnter() {}
 };
 
 exports.default = InputMasker;
