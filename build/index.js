@@ -179,14 +179,14 @@ var InputMasker = function (_React$Component) {
     value: function onKeyPress(e) {
       // console.log('onKeyPress', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
 
+      if (e.key === 'Enter') {
+        this.props.onEnter(this.mask.getValue());
+      }
+
       // Ignore modified key presses
       // Ignore enter key to allow form submission
       if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') {
         e.preventDefault();return;
-      }
-
-      if (e.key === 'Enter') {
-        this.props.onEnter(this.mask.getValue());
       }
 
       e.preventDefault();
@@ -271,7 +271,11 @@ var InputMasker = function (_React$Component) {
 
       /* eslint-disable */
       var patternLength = this.mask.pattern.length;
-      return _react2.default.createElement('input', _extends({}, this.props, {
+      var _props = this.props,
+          onEnter = _props.onEnter,
+          props = _props.props;
+
+      return _react2.default.createElement('input', _extends({}, props, {
         ref: function ref(r) {
           return _this3.input = r;
         },

@@ -140,13 +140,13 @@ class InputMasker extends React.Component {
   onKeyPress(e) {
     // console.log('onKeyPress', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
 
-    // Ignore modified key presses
-    // Ignore enter key to allow form submission
-    if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') { e.preventDefault(); return; }
-
     if (e.key === 'Enter') {
       this.props.onEnter(this.mask.getValue());
     }
+
+    // Ignore modified key presses
+    // Ignore enter key to allow form submission
+    if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') { e.preventDefault(); return; }
 
     e.preventDefault();
     this.updateMaskSelection();
@@ -221,8 +221,9 @@ class InputMasker extends React.Component {
   render() {
     /* eslint-disable */
     const patternLength = this.mask.pattern.length;
+    const {onEnter, props} = this.props;
     return (<input
-      {...this.props}
+      {...props}
       ref={r => this.input = r}
       maxLength={patternLength}
       onChange={this.onChange}
