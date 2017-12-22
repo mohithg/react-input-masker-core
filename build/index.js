@@ -12,8 +12,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ReactInputSelection = require('react/lib/ReactInputSelection');
-
 var _inputmaskCore = require('inputmask-core');
 
 var _inputmaskCore2 = _interopRequireDefault(_inputmaskCore);
@@ -37,6 +35,47 @@ function isUndo(e) {
 
 function isRedo(e) {
   return (e.ctrlKey || e.metaKey) && e.keyCode === (e.shiftKey ? KEYCODE_Z : KEYCODE_Y);
+}
+
+function getSelection(el) {
+  var start, end, rangeEl, clone;
+
+  if (el.selectionStart !== undefined) {
+    start = el.selectionStart;
+    end = el.selectionEnd;
+  } else {
+    try {
+      el.focus();
+      rangeEl = el.createTextRange();
+      clone = rangeEl.duplicate();
+
+      rangeEl.moveToBookmark(document.selection.createRange().getBookmark());
+      clone.setEndPoint('EndToStart', rangeEl);
+
+      start = clone.text.length;
+      end = start + rangeEl.text.length;
+    } catch (e) {/* not focused or not visible */}
+  }
+
+  return { start: start, end: end };
+}
+
+function setSelection(el, selection) {
+  var rangeEl;
+
+  try {
+    if (el.selectionStart !== undefined) {
+      el.focus();
+      el.setSelectionRange(selection.start, selection.end);
+    } else {
+      el.focus();
+      rangeEl = el.createTextRange();
+      rangeEl.collapse(true);
+      rangeEl.moveStart('character', selection.start);
+      rangeEl.moveEnd('character', selection.end - selection.start);
+      rangeEl.select();
+    }
+  } catch (e) {/* not focused or not visible */}
 }
 
 var InputMasker = function (_React$Component) {
@@ -228,7 +267,7 @@ var InputMasker = function (_React$Component) {
       var value = this.mask.getValue();
       if (this.state.focus && value === this.mask.emptyValue) {
         setTimeout(function () {
-          (0, _ReactInputSelection.setSelection)(_this2.input, { start: 0, end: 0 });
+          setSelection(_this2.input, { start: 0, end: 0 });
         }, 1);
         return value;
       }
@@ -239,18 +278,18 @@ var InputMasker = function (_React$Component) {
     value: function updatePattern(props) {
       this.mask.setPattern(props.mask, {
         value: this.mask.getRawValue(),
-        selection: (0, _ReactInputSelection.getSelection)(this.input)
+        selection: getSelection(this.input)
       });
     }
   }, {
     key: 'updateMaskSelection',
     value: function updateMaskSelection() {
-      this.mask.selection = (0, _ReactInputSelection.getSelection)(this.input);
+      this.mask.selection = getSelection(this.input);
     }
   }, {
     key: 'updateInputSelection',
     value: function updateInputSelection() {
-      (0, _ReactInputSelection.setSelection)(this.input, this.mask.selection);
+      setSelection(this.input, this.mask.selection);
     }
   }, {
     key: 'focus',
