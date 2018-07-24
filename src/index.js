@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InputMask from 'inputmask-core';
 
 const KEYCODE_Z = 90;
@@ -289,16 +290,16 @@ class InputMasker extends React.Component {
 }
 
 InputMasker.propTypes = {
-  mask: React.PropTypes.string.isRequired,
-  formatCharacters: React.PropTypes.object,
-  placeholderChar: React.PropTypes.string,
-  size: React.PropTypes.any,
-  placeholder: React.PropTypes.string,
-  onBlur: React.PropTypes.func,
-  onFocus: React.PropTypes.func,
-  value: React.PropTypes.any,
-  onChange: React.PropTypes.func,
-  onEnter: React.PropTypes.func,
+  mask: PropTypes.string.isRequired,
+  formatCharacters: PropTypes.object,
+  placeholderChar: PropTypes.string,
+  size: PropTypes.any,
+  placeholder: PropTypes.string,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  value: PropTypes.any,
+  onChange: PropTypes.func,
+  onEnter: PropTypes.func,
 };
 
 InputMasker.defaultProps = {

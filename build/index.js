@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _inputmaskCore = require('inputmask-core');
 
 var _inputmaskCore2 = _interopRequireDefault(_inputmaskCore);
@@ -344,16 +348,16 @@ var InputMasker = function (_React$Component) {
 }(_react2.default.Component);
 
 InputMasker.propTypes = {
-  mask: _react2.default.PropTypes.string.isRequired,
-  formatCharacters: _react2.default.PropTypes.object,
-  placeholderChar: _react2.default.PropTypes.string,
-  size: _react2.default.PropTypes.any,
-  placeholder: _react2.default.PropTypes.string,
-  onBlur: _react2.default.PropTypes.func,
-  onFocus: _react2.default.PropTypes.func,
-  value: _react2.default.PropTypes.any,
-  onChange: _react2.default.PropTypes.func,
-  onEnter: _react2.default.PropTypes.func
+  mask: _propTypes2.default.string.isRequired,
+  formatCharacters: _propTypes2.default.object,
+  placeholderChar: _propTypes2.default.string,
+  size: _propTypes2.default.any,
+  placeholder: _propTypes2.default.string,
+  onBlur: _propTypes2.default.func,
+  onFocus: _propTypes2.default.func,
+  value: _propTypes2.default.any,
+  onChange: _propTypes2.default.func,
+  onEnter: _propTypes2.default.func
 };
 
 InputMasker.defaultProps = {
